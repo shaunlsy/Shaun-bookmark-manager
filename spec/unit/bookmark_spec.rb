@@ -3,7 +3,7 @@ require_relative '../../lib/bookmarks.rb'
 describe Bookmarks do
   describe '#all' do
     it 'shows all bookmarks' do
-      expect(subject.all).to eq 'Netflix BBC'
+      expect(subject.all).to include 'http://www.Netflix.com'
     end
   end
 end

@@ -19,6 +19,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
+    pg (1.2.2)
     public_suffix (4.0.3)
     rack (2.1.1)
     rack-protection (2.0.8.1)
@@ -59,6 +60,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  pg
   rake
   rspec
   selenium-webdriver
