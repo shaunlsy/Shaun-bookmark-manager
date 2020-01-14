@@ -3,7 +3,11 @@ require 'pg'
 class Bookmarks
 
   def initialize
-    @database = PG.connect(dbname: 'bookmark_manager')
+    if ENV['ENVIRONMENT'] == 'test'
+      @database = PG.connect(dbname: 'bookmark_manager_test')
+    else
+      @database = PG.connect(dbname: 'bookmark_manager')
+    end
   end
 
   def all
@@ -11,6 +15,4 @@ class Bookmarks
       row['url']
     end
   end
-
-
 end
