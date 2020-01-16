@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/bookmarks.rb'
+require 'database_helpers'
 
 describe Bookmarks do
 
@@ -24,8 +25,13 @@ describe Bookmarks do
   end
 
   describe '#create' do
-    it 'add a url to the database' do
+
+    it 'creates a new bookmark' do
       bookmark = Bookmarks.create(url: 'http://test-url.com', title: 'test-url')
+      persisted_data = persisted_data(id: bookmark.id)
+
+      expect(bookmark).to be_a Bookmarks
+      expect(bookmark.id).to eq persisted_data['id']
       expect(bookmark.url).to eq 'http://test-url.com'
       expect(bookmark.title).to eq 'test-url'
     end
