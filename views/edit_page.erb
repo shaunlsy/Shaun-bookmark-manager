@@ -1,0 +1,8 @@
+<h1> Update Your Info Below </h1>
+
+<form action="/bookmarks/<%= @bookmark_id %>" method="post">
+  <input type="hidden" name="_method" value="PUT"/>
+  URL: <input type="text" name="url"/>
+  Title: <input type="text" name="title"/>
+  <input type="submit" value="Submit"/>
+</form>

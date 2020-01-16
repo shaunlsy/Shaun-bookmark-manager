@@ -41,8 +41,27 @@ describe Bookmarks do
     it 'removes bookmark from the data frame' do
       bookmark = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'makersacademy')
       Bookmarks.delete(id: bookmark.id)
-      
+
       expect(Bookmarks.all.length).to eq 0
+    end
+  end
+
+  describe '#find' do
+    it 'finds specific record in the database table and returns it' do
+      bookmark = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'makersacademy')
+
+      expect(bookmark).to be_a Bookmarks
+      expect(Bookmarks.find(id: bookmark.id)).to eq bookmark.id
+    end
+  end
+
+  describe '#update' do
+    it 'updates a spicific record in table using the find method' do
+      bookmark = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'makersacademy')
+
+      result = Bookmarks.update(url: 'www.test.com', title: 'test', id: bookmark.id)
+      expect(result.url).to eq 'www.test.com'
+      expect(result.title).to eq 'test'
     end
   end
 end
