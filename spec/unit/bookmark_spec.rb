@@ -36,4 +36,13 @@ describe Bookmarks do
       expect(bookmark.title).to eq 'test-url'
     end
   end
+
+  describe '#delete' do
+    it 'removes bookmark from the data frame' do
+      bookmark = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'makersacademy')
+      Bookmarks.delete(id: bookmark.id)
+      
+      expect(Bookmarks.all.length).to eq 0
+    end
+  end
 end
