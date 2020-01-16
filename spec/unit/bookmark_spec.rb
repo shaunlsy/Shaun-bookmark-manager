@@ -3,29 +3,31 @@
 require_relative '../../lib/bookmarks.rb'
 
 describe Bookmarks do
+
+
   describe '#all' do
     it 'shows all bookmarks' do
-      Bookmarks.add_bookmark('http://www.makersacademy.com')
-      Bookmarks.add_bookmark('http://www.twitter.com')
-      Bookmarks.add_bookmark('http://www.google.com')
+      bookmark = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'makersacademy')
+      Bookmarks.create(url: 'http://www.twitter.com', title: 'twitter')
+      Bookmarks.create(url: 'http://www.google.com', title: 'google')
 
-      expect(Bookmarks.all).to include 'http://www.makersacademy.com'
-      expect(Bookmarks.all).to include 'http://www.google.com'
-      expect(Bookmarks.all).to include 'http://www.twitter.com'
+      bookmarks = Bookmarks.all
+
+      expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
+      expect(bookmarks.first.title).to eq 'makersacademy'
+      expect(bookmarks.first.id).to eq bookmark.id
+      expect(bookmarks[2].url).to eq 'http://www.google.com'
+      expect(bookmarks[2].title).to eq 'google'
+      expect(bookmarks[1].url).to eq 'http://www.twitter.com'
+      expect(bookmarks[1].title).to eq 'twitter'
     end
   end
 
   describe '#create' do
-    it 'respond to create' do
-      expect(Bookmarks).to receive(:create)
-      Bookmarks.create
-    end
-  end
-
-  describe '#add_bookmark' do
     it 'add a url to the database' do
-      Bookmarks.add_bookmark('http://test-url.com')
-      expect(Bookmarks.all).to include 'http://test-url.com'
+      bookmark = Bookmarks.create(url: 'http://test-url.com', title: 'test-url')
+      expect(bookmark.url).to eq 'http://test-url.com'
+      expect(bookmark.title).to eq 'test-url'
     end
   end
 end
